@@ -6,4 +6,8 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="anime_text">ANIME</string>
+    <string name="title_text_bundle">title</string>
+    <string name="image_text_bundle">coverImage</string>
+    <string name="date_text_bundle">createdAt</string>
+    <string name="description_text_bundle">description</string>
 </resources>

@@ -27,7 +27,6 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         mBinding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(mBinding.root)
 
-
         setupViewModel()
         setupRecyclerView()
     }
@@ -52,6 +51,13 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         val fragmentManager =  supportFragmentManager
         val fragmentTransaction = fragmentManager.beginTransaction()
 
+        val bundle = Bundle()
+        bundle.putString(getString(R.string.title_text_bundle), animeEntity.title)
+        bundle.putString(getString(R.string.image_text_bundle), animeEntity.coverImage)
+        bundle.putString(getString(R.string.date_text_bundle), animeEntity.creationAt)
+        bundle.putString(getString(R.string.description_text_bundle), animeEntity.description)
+
+        fragment.arguments = bundle
         fragmentTransaction.add(R.id.containerMain, fragment)
         fragmentTransaction.addToBackStack(null)
         fragmentTransaction.commit()
