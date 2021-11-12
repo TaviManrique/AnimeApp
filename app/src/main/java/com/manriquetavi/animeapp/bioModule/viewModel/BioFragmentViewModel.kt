@@ -28,7 +28,4 @@ class BioFragmentViewModel: ViewModel() {
         return result
     }
 
-    fun setResult(value: Any){
-        result.value = value
-    }
 }

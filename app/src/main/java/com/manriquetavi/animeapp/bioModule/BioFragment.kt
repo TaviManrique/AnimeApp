@@ -14,19 +14,14 @@ import com.manriquetavi.animeapp.common.entities.AnimeEntity
 import com.manriquetavi.animeapp.databinding.FragmentBioBinding
 import com.manriquetavi.animeapp.mainModule.MainActivity
 import kotlinx.coroutines.delay
+import java.text.DateFormat
 
 class BioFragment : Fragment() {
 
     private lateinit var mBinding: FragmentBioBinding
-    private lateinit var mBioFragmentViewModel: BioFragmentViewModel
     private var mActivity: MainActivity? = null
     private lateinit var mAnimeEntity: AnimeEntity
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-        mBioFragmentViewModel = ViewModelProvider(requireActivity()).get(BioFragmentViewModel::class.java)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -43,28 +38,11 @@ class BioFragment : Fragment() {
             val img = arguments?.getString(getString(R.string.image_text_bundle))
             val date = arguments?.getString(getString(R.string.date_text_bundle))
             val description = arguments?.getString(getString(R.string.description_text_bundle))
-            mAnimeEntity= AnimeEntity(title = title!!, coverImage = img!!, creationAt = date!!, description = description!! )
+            mAnimeEntity = arguments?.getSerializable("key") as AnimeEntity
+            //mAnimeEntity= AnimeEntity(title = title!!, coverImage = img!!, creationAt = date!!, description = description!! )
         }
         setUiAnime(mAnimeEntity)
-        setupViewModel()
-    }
-
-    private fun setupViewModel() {
-        mBioFragmentViewModel.getAnimeSelected().observe(viewLifecycleOwner, {
-            mAnimeEntity = it
-            setUiAnime(it)
-            setupActionBar()
-        })
-
-        mBioFragmentViewModel.getResult().observe(viewLifecycleOwner, { result ->
-            when(result){
-                is Int -> {
-                    mAnimeEntity.id = result
-                    mBioFragmentViewModel.setAnimeSelected(mAnimeEntity)
-                    mActivity?.onBackPressed()
-                }
-            }
-        })
+        setupActionBar()
     }
 
     private fun setUiAnime(animeEntity: AnimeEntity) {
@@ -115,7 +93,7 @@ class BioFragment : Fragment() {
     override fun onDestroy() {
         mActivity?.supportActionBar?.setDisplayHomeAsUpEnabled(false)
         mActivity?.supportActionBar?.title = getString(R.string.app_name)
-        mBioFragmentViewModel.setResult(Any())
+        //mBioFragmentViewModel.setResult(Any())
 
         setHasOptionsMenu(false)
         super.onDestroy()

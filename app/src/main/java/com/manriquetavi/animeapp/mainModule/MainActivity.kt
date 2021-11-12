@@ -56,6 +56,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         bundle.putString(getString(R.string.image_text_bundle), animeEntity.coverImage)
         bundle.putString(getString(R.string.date_text_bundle), animeEntity.creationAt)
         bundle.putString(getString(R.string.description_text_bundle), animeEntity.description)
+        bundle.putSerializable("key",animeEntity)
 
         fragment.arguments = bundle
         fragmentTransaction.add(R.id.containerMain, fragment)
@@ -68,7 +69,7 @@ class MainActivity : AppCompatActivity(), OnClickListener {
         mMainViewModel.getAnimes().observe(this, { animes ->
             mAdapter.setAnimes(animes)
         })
-        mBioFragmentViewModel = ViewModelProvider(this).get(BioFragmentViewModel::class.java)
+       // mBioFragmentViewModel = ViewModelProvider(this).get(BioFragmentViewModel::class.java)
         
     }
 }

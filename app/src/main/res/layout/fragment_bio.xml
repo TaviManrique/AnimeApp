@@ -28,7 +28,8 @@
                     android:id="@+id/imgPhotoAnimeBio"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@color/primaryLightColor"/>
+                    android:contentDescription="@string/description_image_photo"
+                    android:background="@android:color/darker_gray" />
             </com.google.android.material.card.MaterialCardView>
 
             <TextView
@@ -58,10 +59,10 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:text="Descripcion:"
             style="?attr/textAppearanceSubtitle1"
             android:paddingHorizontal="@dimen/margin_padding_size_medium"
-            android:layout_marginVertical="@dimen/margin_padding_size_medium"
-            tools:text="Descripcion:"/>
+            android:layout_marginVertical="@dimen/margin_padding_size_medium"/>
         <TextView
             android:id="@+id/tvDescription"
             android:layout_width="match_parent"
